@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Тест на желание и занятость</title>
+    <style>
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+   
+   <h2>Тест на желание и занятость</h2>
+   <hr>
+  
+   <form id="testForm">
+       <table border="2">
+           <tr> 
+               <td>Я свободен когда-то</td> 
+               <td><input type="checkbox" name="q1"></td>
+           </tr>   
+           <tr>
+               <td>Я люблю отдых</td> 
+               <td><input type="checkbox" name="q2"></td> 
+           </tr>
+           <tr>
+               <td>Я люблю огонь</td> 
+               <td><input type="checkbox" name="q3"></td>
+           </tr>
+           <tr>
+               <td>Я люблю лето</td> 
+               <td><input type="checkbox" name="q4"></td> 
+           </tr>
+           <tr>
+               <td>Я люблю мясооооо</td>   
+               <td><input type="checkbox" name="q5"></td>
+           </tr>
+           <tr>
+               <td>Я люблю природу</td>
+               <td><input type="checkbox" name="q6"></td>
+           </tr>
+       </table>
+       <br>
+       <button type="button" onclick="checkAnswers()">Отправить</button>    
+   </form>
+   
+   <div id="result" class="result" style="display: none;"></div>
+   
+   <hr>
+   
+   <script>
+       function checkAnswers() {
+         
+           const q1 = document.querySelector('input[name="q1"]').checked;
+           const q2 = document.querySelector('input[name="q2"]').checked;
+           const q3 = document.querySelector('input[name="q3"]').checked;
+           const q4 = document.querySelector('input[name="q4"]').checked;
+           const q5 = document.querySelector('input[name="q5"]').checked;
+           const q6 = document.querySelector('input[name="q6"]').checked;
+           
+           
+           let resultText = "<h3>Результаты теста:</h3>";
+           let positiveCount = 0;
+           
+           if (q1) positiveCount++;
+           if (q2) positiveCount++;
+           if (q3) positiveCount++;
+           if (q4) positiveCount++;
+           if (q5) positiveCount++;
+           if (q6) positiveCount++;
+           
+           resultText += `<p>Вы ответили "Да" на ${positiveCount} из 6 вопросов.</p>`;
+           
+           
+           if (positiveCount >= 1) {
+               resultText += "<p>ШАШЛЫКИ!</p>";
+           }
+           
+            if (!q1 && positiveCount >= 4) {
+               resultText += "<p>У вас много интересов и стоит найти время для себя!</p>";
+           }
+            if (q2 && q3) {
+               resultText += "<p>Спалим дом, пожарим мясо!</p>";
+           }
+           
+           if (positiveCount <= 0) {
+               resultText += "<p>Вы идете нахуй!</p>";
+           }
+           
+           
+           const resultDiv = document.getElementById('result');
+           resultDiv.innerHTML = resultText;
+           resultDiv.style.display = 'block';
+       }
+   </script>
+</body>
+</html>
